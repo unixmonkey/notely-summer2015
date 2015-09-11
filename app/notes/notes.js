@@ -70,15 +70,6 @@ noteApp.controller('NotesController', function NotesController($scope, $rootScop
     this.clearNote();
   };
 
-  $scope.logout = function() {
-    NotesBackend.deleteCookie();
-    $location.path('login');
-  };
-
-  $scope.goToSignIn = function() {
-    $location.path('login');
-  };
-
   NotesBackend.fetchNotes(this.refreshNotes);
   $rootScope.$on('notesLoaded', function(ev, notes) {
     _this.refreshNotes(notes);
