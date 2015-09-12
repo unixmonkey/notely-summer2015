@@ -4,7 +4,6 @@
 var app = angular.module('notely', [
   'ngRoute',
   'ngCookies',
-  'notely.version',
   'notely.notes',
   'notely.login'
 ]);
