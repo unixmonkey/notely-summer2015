@@ -1,27 +1,10 @@
 'use strict';
 
-// Declare app level module which depends on views, and components
-var app = angular.module('notely', [
-  'ngRoute',
-  'ngCookies',
-  'notely.notes',
-  'notely.login'
-]);
+var nevernoteBasePath = 'https://nevernote-1150.herokuapp.com/api/v1/';
+var apiKey = '$2a$10$TTc8gLTzfWBk9SsDO7p.J.acOzMMG535814CudrCMQgmjUSvbQ2ju';
 
-app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-  $routeProvider.otherwise({redirectTo: '/login'});
-  $locationProvider.html5Mode(true);
-}]);
-
-app.directive('focusOn', function() {
-  return function(scope, elem, attr) {
-    scope.$on(attr.focusOn, function(e) {
-      elem[0].focus();
-    });
-  };
-});
-
-app.service('NotesBackend', function NotesBackend($http, $cookies) {
+angular.module('notely')
+.service('NotesBackend', function NotesBackend($http, $cookies) {
   var notes = [];
   var user = $cookies.get('user') ? JSON.parse($cookies.get('user')) : {};
 

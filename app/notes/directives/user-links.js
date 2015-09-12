@@ -2,7 +2,7 @@
 /*jshint multistr: true */
 
 angular.module('notely.notes')
-.directive('userLinks', function(NotesBackend, $location) { // camelized directive name tells Angular to look for a hyphenized version <user-links> in html
+.directive('userLinks', function(NotesBackend) { // camelized directive name tells Angular to look for a hyphenized version <user-links> in html
   return {
     restrict: 'E', // only allow element syntax: <user-links></user-links>
     replace: true, // replace <user-links></user-links> element, instead of nesting inside it
@@ -15,24 +15,16 @@ angular.module('notely.notes')
         |\
         <a ng-click="ctrl.logout()">Logout</a>\
       </div>\
-      <div ng-hide="ctrl.user().id">\
-        <a ng-click="ctrl.goToSignIn()">Sign in</a>\
-      </div>\
     </div>'
   };
 
   function userLinksController() {
     this.user = function() {
       return NotesBackend.getUser();
-    }
-
-    this.goToSignIn = function() {
-      $location.path('login');
-    }
+    };
 
     this.logout = function() {
       NotesBackend.deleteCookie();
-      $location.path('login');
-    }
+    };
   }
 });

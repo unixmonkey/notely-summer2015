@@ -1,0 +1,30 @@
+'use strict';
+/*jshint multistr: true */
+
+angular.module('notely.notes')
+.directive('sidebar', function(NotesBackend, CurrentNote) {
+  return {
+    restrict: 'E',
+    replace: true,
+    scope: {},
+    controllerAs: 'ctrl',
+    controller: sidebarController,
+    template: '<nav id="sidebar" ng-show="ctrl.user().id">\
+      <button class="new-note btn btn-default" ng-click="ctrl.clearNote()">\
+        <i class="fa fa-plus-circle"></i>\
+        New Note\
+      </button>\
+      <sidebar-notes></sidebar-notes>\
+    </nav>'
+  };
+
+  function sidebarController() {
+    this.user = function() {
+      return NotesBackend.getUser();
+    };
+
+    this.clearNote = function() {
+      CurrentNote.set({});
+    };
+  }
+});

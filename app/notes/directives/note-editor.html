@@ -1,0 +1,28 @@
+<form ng-show="ctrl.user().id" ng-submit="ctrl.commit()">
+  <p>
+    <input type="text"
+      name="title"
+      id="note_title"
+      placeholder="Title your note"
+      ng-model="ctrl.note.title"
+      value="{{ ctrl.currentNote().title }}"
+      focus-on="ctrl.noteCleared">
+  </p>
+  <p>
+    <text-angular
+      name="body_html"
+      ng-model="ctrl.note.body_html"
+      ta-toolbar="[
+        ['bold', 'italics', 'underline'],
+        ['ul', 'ol', 'indent', 'outdent'],
+        ['html'],
+        ['insertLink']]"
+      placeholder="Just start typing..."></text-angular>
+  </p>
+  <div class="form-actions">
+    <input type="submit" name="commit" value="{{ ctrl.buttonText(ctrl.note) }}" class="btn btn-default">
+    <a ng-click="ctrl.deleteNote()" ng-show="ctrl.note.id">
+      <i class="fa fa-trash-o"></i>
+    </a>
+  </div>
+</form>
