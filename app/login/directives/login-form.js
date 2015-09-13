@@ -2,7 +2,7 @@
 /*jshint multistr: true */
 
 angular.module('notely')
-.directive('loginForm', function(NotesBackend, $location, $rootScope) {
+.directive('loginForm', function(CurrentUser) {
   return {
     restrict: 'E',
     replace: true,
@@ -18,15 +18,16 @@ angular.module('notely')
     this.errorMessage = '';
 
     this.getUser = function() {
-      return NotesBackend.getUser();
-    }
+      return CurrentUser.get();
+    };
 
     this.submit = function() {
-      NotesBackend.fetchUser(_this.user, function(user, notes) {
+      CurrentUser.fetch(_this.user, function(user, notes) {
         if (!user.id) {
           _this.errorMessage = user.error;
           _this.user.password = '';
         }
+        _this.getUser();
       });
     };
   }

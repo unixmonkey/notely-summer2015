@@ -2,7 +2,7 @@
 /*jshint multistr: true */
 
 angular.module('notely')
-.directive('noteEditor', function(NotesBackend, CurrentNote) {
+.directive('noteEditor', function(NotesBackend, CurrentNote, CurrentUser) {
   return {
     restrict: 'E',
     replace: true,
@@ -17,7 +17,7 @@ angular.module('notely')
     var note = {};
 
     this.user = function() {
-      return NotesBackend.getUser();
+      return CurrentUser.get();
     };
 
     this.commit = function() {

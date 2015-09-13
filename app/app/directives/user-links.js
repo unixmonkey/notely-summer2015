@@ -1,8 +1,8 @@
 'use strict';
 /*jshint multistr: true */
 
-angular.module('notely.notes')
-.directive('userLinks', function(NotesBackend) { // camelized directive name tells Angular to look for a hyphenized version <user-links> in html
+angular.module('notely')
+.directive('userLinks', function(NotesBackend, CurrentUser) { // camelized directive name tells Angular to look for a hyphenized version <user-links> in html
   return {
     restrict: 'E', // only allow element syntax: <user-links></user-links>
     replace: true, // replace <user-links></user-links> element, instead of nesting inside it
@@ -20,11 +20,12 @@ angular.module('notely.notes')
 
   function userLinksController() {
     this.user = function() {
-      return NotesBackend.getUser();
+      return CurrentUser.get();
     };
 
     this.logout = function() {
-      NotesBackend.deleteCookie();
+      CurrentUser.unset()
+      NotesBackend.clearNotes();
     };
   }
 });

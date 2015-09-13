@@ -2,7 +2,7 @@
 /*jshint multistr: true */
 
 angular.module('notely.notes')
-.directive('sidebar', function(NotesBackend, CurrentNote) {
+.directive('sidebar', function(CurrentNote, CurrentUser) {
   return {
     restrict: 'E',
     replace: true,
@@ -20,7 +20,7 @@ angular.module('notely.notes')
 
   function sidebarController() {
     this.user = function() {
-      return NotesBackend.getUser();
+      return CurrentUser.get();
     };
 
     this.clearNote = function() {

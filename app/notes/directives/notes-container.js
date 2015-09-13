@@ -2,7 +2,7 @@
 /*jshint multistr: true */
 
 angular.module('notely.notes')
-.directive('notesContainer', function(NotesBackend) {
+.directive('notesContainer', function(CurrentUser) {
   return {
     restrict: 'E',
     replace: true,
@@ -39,7 +39,7 @@ angular.module('notely.notes')
 
   function notesContainerController() {
     this.user = function() {
-      return NotesBackend.getUser();
+      return CurrentUser.get();
     };
   }
 });
