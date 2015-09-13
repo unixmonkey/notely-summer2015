@@ -1,3 +1,3 @@
 'use strict';
 
-var noteApp = angular.module('notely.notes', ['ngRoute', 'textAngular']);
+var noteApp = angular.module('notely.notes', ['textAngular']);
