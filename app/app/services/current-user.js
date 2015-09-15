@@ -1,6 +1,6 @@
 'use strict';
 
-var Constants = require('../constants.js');
+let Constants = require('../constants.js');
 
 angular.module('notely')
 .service('CurrentUser', function($http, $cookies) {
