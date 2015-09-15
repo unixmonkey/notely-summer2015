@@ -1,4 +1,3 @@
-require('./app/constants.js');
 require('./app/app.js');
 require('./app/services/current-user.js');
 require('./app/directives/main-container.js');
