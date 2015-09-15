@@ -1,5 +1,4 @@
-'use strict';
-/*jshint multistr: true */
+import userLinks from './user-links';
 
 angular.module('notely')
 .directive('mainHeader', function() {

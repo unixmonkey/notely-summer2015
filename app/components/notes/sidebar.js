@@ -1,5 +1,4 @@
-'use strict';
-/*jshint multistr: true */
+import sidebarNotes from './sidebar-notes';
 
 angular.module('notely')
 .directive('sidebar', function(CurrentNote, CurrentUser) {

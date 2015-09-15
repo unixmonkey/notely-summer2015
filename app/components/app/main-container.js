@@ -1,5 +1,6 @@
-'use strict';
-/*jshint multistr: true */
+import sidebar from '../notes/sidebar';
+import loginForm from '../login/login-form';
+import noteEditor from '../notes/note-editor';
 
 angular.module('notely')
 .directive('mainContainer', function(NotesBackend) {
