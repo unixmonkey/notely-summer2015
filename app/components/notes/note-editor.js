@@ -9,7 +9,7 @@ angular.module('notely')
     scope: {},
     controllerAs: 'ctrl',
     controller: noteEditorController,
-    templateUrl: '/notes/directives/note-editor.html'
+    templateUrl: '/components/notes/note-editor.html'
   };
 
   function noteEditorController() {

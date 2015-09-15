@@ -9,7 +9,7 @@ angular.module('notely')
     scope: {},
     controllerAs: 'ctrl',
     controller: loginFormController,
-    templateUrl: '/login/directives/login-form.html'
+    templateUrl: '/components/login/login-form.html'
   };
 
   function loginFormController() {
