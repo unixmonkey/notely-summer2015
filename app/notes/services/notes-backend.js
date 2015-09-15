@@ -1,5 +1,7 @@
 'use strict';
 
+var Constants = require('../../app/constants.js');
+
 angular.module('notely')
 .service('NotesBackend', function NotesBackend(CurrentUser, $http, $cookies) {
   var notes = [];

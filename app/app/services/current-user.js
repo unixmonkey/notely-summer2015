@@ -1,5 +1,7 @@
 'use strict';
 
+var Constants = require('../constants.js');
+
 angular.module('notely')
 .service('CurrentUser', function($http, $cookies) {
   var currentUser = $cookies.get('user') ? JSON.parse($cookies.get('user')) : {};
