@@ -1,12 +1,12 @@
 require('./app/app.js');
-require('./app/services/current-user.js');
+require('./services/notes-backend.js');
+require('./services/current-user.js');
+require('./services/current-note.js');
 require('./app/directives/main-container.js');
 require('./app/directives/main-header.js');
 require('./app/directives/user-links.js');
-require('./app/directives/focus-on.js');
+require('./directives/focus-on.js');
 require('./notes/notes.js');
-require('./notes/services/current-note.js');
-require('./notes/services/notes-backend.js');
 require('./notes/directives/sidebar.js');
 require('./notes/directives/sidebar-notes.js');
 require('./notes/directives/note-editor.js');
