@@ -22,7 +22,7 @@ angular.module('notely')
 
   this.fetch = function(userFormData, callback) {
     var _this = this;
-    $http.post(nevernoteBasePath + 'session', {
+    $http.post(Constants.API_BASE_PATH + 'session', {
       user: {
         username: userFormData.username,
         password: userFormData.password

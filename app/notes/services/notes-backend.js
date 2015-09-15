@@ -19,7 +19,7 @@ angular.module('notely')
   this.fetchNotes = function (callback) {
     var user = this.user();
     if (user.api_key) {
-      $http.get(nevernoteBasePath + 'notes?api_key=' + user.api_key)
+      $http.get(Constants.API_BASE_PATH + 'notes?api_key=' + user.api_key)
         .success(function(notesData) {
           notes = notesData;
           typeof callback === 'function' && callback(notes);
@@ -29,7 +29,7 @@ angular.module('notely')
 
   this.postNote = function(noteData, callback) {
     var user = this.user();
-    $http.post(nevernoteBasePath + 'notes', {
+    $http.post(Constants.API_BASE_PATH + 'notes', {
       api_key: user.api_key,
       note: noteData
     }).success(function(newNoteData){
@@ -50,7 +50,7 @@ angular.module('notely')
 
   this.updateNote = function(noteData, callback) {
     var _this = this;
-    $http.put(nevernoteBasePath + 'notes/' + noteData.id, {
+    $http.put(Constants.API_BASE_PATH + 'notes/' + noteData.id, {
       api_key: _this.user().api_key,
       note: noteData
     }).success(function(newNoteData){
@@ -60,7 +60,7 @@ angular.module('notely')
 
   this.deleteNote = function(note, callback) {
     var _this = this;
-    $http.delete(nevernoteBasePath + 'notes/' + note.id + '?api_key=' + _this.user().api_key)
+    $http.delete(Constants.API_BASE_PATH + 'notes/' + note.id + '?api_key=' + _this.user().api_key)
     .success(function(newNoteData){
       _this.fetchNotes(callback);
     });
