@@ -1,4 +1,5 @@
-require('./app/app.js');
+require('./app.js');
+require('./notes.js');
 require('./services/notes-backend.js');
 require('./services/current-user.js');
 require('./services/current-note.js');
@@ -6,7 +7,6 @@ require('./directives/focus-on.js');
 require('./components/app/main-container.js');
 require('./components/app/main-header.js');
 require('./components/app/user-links.js');
-require('./notes/notes.js');
 require('./components/notes/sidebar.js');
 require('./components/notes/sidebar-notes.js');
 require('./components/notes/note-editor.js');
