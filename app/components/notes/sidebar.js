@@ -1,7 +1,7 @@
 'use strict';
 /*jshint multistr: true */
 
-angular.module('notely.notes')
+angular.module('notely')
 .directive('sidebar', function(CurrentNote, CurrentUser) {
   return {
     restrict: 'E',

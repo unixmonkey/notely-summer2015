@@ -1,7 +1,7 @@
 'use strict';
 /*jshint multistr: true */
 
-angular.module('notely.notes')
+angular.module('notely')
 .directive('notesContainer', function(CurrentUser) {
   return {
     restrict: 'E',

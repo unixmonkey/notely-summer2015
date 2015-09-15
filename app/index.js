@@ -1,5 +1,4 @@
 require('./app.js');
-require('./notes.js');
 require('./services/notes-backend.js');
 require('./services/current-user.js');
 require('./services/current-note.js');
