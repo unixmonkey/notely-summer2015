@@ -1,3 +1,6 @@
+import NotesBackend from '../../services/notes-backend';
+import CurrentNote from '../../services/current-note';
+
 angular.module('notely')
 .directive('sidebarNotes', function(NotesBackend, CurrentNote) {
   return {

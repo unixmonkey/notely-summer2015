@@ -1,3 +1,4 @@
+import NotesBackend from '../../services/notes-backend';
 import sidebar from '../notes/sidebar';
 import loginForm from '../login/login-form';
 import noteEditor from '../notes/note-editor';

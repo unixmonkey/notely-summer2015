@@ -1,3 +1,6 @@
+import NotesBackend from '../../services/notes-backend';
+import CurrentUser from '../../services/current-user';
+
 angular.module('notely')
 .directive('userLinks', function(NotesBackend, CurrentUser) { // camelized directive name tells Angular to look for a hyphenized version <user-links> in html
   return {

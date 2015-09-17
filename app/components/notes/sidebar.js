@@ -1,3 +1,5 @@
+import CurrentNote from '../../services/current-note';
+import CurrentUser from '../../services/current-user';
 import sidebarNotes from './sidebar-notes';
 
 angular.module('notely')

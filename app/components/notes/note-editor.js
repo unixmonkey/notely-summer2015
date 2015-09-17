@@ -1,5 +1,6 @@
-'use strict';
-/*jshint multistr: true */
+import NotesBackend from '../../services/notes-backend';
+import CurrentNote from '../../services/current-note';
+import CurrentUser from '../../services/current-user';
 
 angular.module('notely')
 .directive('noteEditor', function(NotesBackend, CurrentNote, CurrentUser) {

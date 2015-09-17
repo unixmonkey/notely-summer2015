@@ -1,5 +1,4 @@
-'use strict';
-/*jshint multistr: true */
+import CurrentUser from '../../services/current-user';
 
 angular.module('notely')
 .directive('loginForm', function(CurrentUser) {
