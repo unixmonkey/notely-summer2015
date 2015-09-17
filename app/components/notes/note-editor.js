@@ -1,6 +1,7 @@
 import NotesBackend from '../../services/notes-backend';
 import CurrentNote from '../../services/current-note';
 import CurrentUser from '../../services/current-user';
+import focusOn from '../../directives/focus-on';
 
 angular.module('notely')
 .directive('noteEditor', function(NotesBackend, CurrentNote, CurrentUser) {
