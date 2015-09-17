@@ -1,22 +1,20 @@
-'use strict';
-/*jshint multistr: true */
-
 angular.module('notely')
 .directive('sidebarNotes', function(NotesBackend, CurrentNote) {
   return {
     restrict: 'E',
     replace: true,
-    scope: { },
+    scope: {},
     controllerAs: 'ctrl',
     controller: sidebarNotesController,
-    template: '<ul id="notes" ng-show="ctrl.hasNotes()">\
-      <li id="note_{{ note.id }}"\
-        ng-repeat="note in ctrl.notes | orderBy: \'-id\' | limitTo: 10"\
-        ng-click="ctrl.loadNote(note)">\
-        <div class="note-title">{{ note.title }}</div>\
-        <div class="note-body">{{ note.body_text }}</div>\
-      </li>\
-    </ul>'
+    template: `
+      <ul id="notes" ng-show="ctrl.hasNotes()">
+        <li id="note_{{ note.id }}"
+          ng-repeat="note in ctrl.notes | orderBy: '-id' | limitTo: 10"
+          ng-click="ctrl.loadNote(note)">
+          <div class="note-title">{{ note.title }}</div>
+          <div class="note-body">{{ note.body_text }}</div>
+        </li>
+      </ul>`
   };
 
   function sidebarNotesController() {

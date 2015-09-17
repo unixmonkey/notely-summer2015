@@ -8,13 +8,14 @@ angular.module('notely')
     scope: {},
     controllerAs: 'ctrl',
     controller: sidebarController,
-    template: '<nav id="sidebar" ng-show="ctrl.user().id">\
-      <button class="new-note btn btn-default" ng-click="ctrl.clearNote()">\
-        <i class="fa fa-plus-circle"></i>\
-        New Note\
-      </button>\
-      <sidebar-notes></sidebar-notes>\
-    </nav>'
+    template: `
+      <nav id="sidebar" ng-show="ctrl.user().id">
+        <button class="new-note btn btn-default" ng-click="ctrl.clearNote()">
+          <i class="fa fa-plus-circle"></i>
+          New Note
+        </button>
+        <sidebar-notes></sidebar-notes>
+      </nav>`
   };
 
   function sidebarController() {
