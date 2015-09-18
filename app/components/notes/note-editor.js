@@ -43,7 +43,7 @@ angular.module('notely')
       return JSON.parse(JSON.stringify(note));
     };
 
-    this.deleteNote = function() {
+    this.deleteNote = function(note) {
       NotesBackend.deleteNote(note, _this.refreshNotes);
       note = {};
     };

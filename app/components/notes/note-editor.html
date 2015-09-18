@@ -21,7 +21,7 @@
   </p>
   <div class="form-actions">
     <input type="submit" name="commit" value="{{ ctrl.buttonText(ctrl.note) }}" class="btn btn-default">
-    <a ng-click="ctrl.deleteNote()" ng-show="ctrl.note.id">
+    <a ng-click="ctrl.deleteNote(ctrl.note)" ng-show="ctrl.note.id">
       <i class="fa fa-trash-o"></i>
     </a>
   </div>
