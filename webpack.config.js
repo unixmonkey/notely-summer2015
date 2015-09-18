@@ -2,7 +2,7 @@ var webpack = require('webpack');
 
 module.exports = {
   entry: [
-    './app/index.js'
+    './app/components/app/main-body.js'
   ],
   output: {
     path: './app',
