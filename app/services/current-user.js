@@ -1,39 +1,42 @@
-'use strict';
-
 import Constants from '../constants'
 
-angular.module('notely')
-.service('CurrentUser', function($http, $cookies) {
-  var currentUser = $cookies.get('user') ? JSON.parse($cookies.get('user')) : {};
+class CurrentUser {
+  constructor($http, $cookies) {
+    this.$http = $http
+    this.$cookies = $cookies
+    this.currentUser = $cookies.get('user') ? JSON.parse($cookies.get('user')) : {}
+  }
 
-  this.get = function() {
-    return currentUser;
-  };
+  get() {
+    return this.currentUser
+  }
 
-  this.set = function(userData) {
-    this.unset();
-    currentUser = userData;
-    $cookies.put('user', JSON.stringify(userData));
-    return this.get();
-  };
+  set(userData) {
+    this.unset()
+    this.currentUser = userData
+    this.$cookies.put('user', JSON.stringify(userData))
+    return this.get()
+  }
 
-  this.unset = function() {
-    $cookies.remove('user');
-    currentUser = {};
-  };
+  unset() {
+    this.$cookies.remove('user')
+    this.currentUser = {}
+  }
 
-  this.fetch = function(userFormData, callback) {
-    var _this = this;
-    $http.post(Constants.API_BASE_PATH + 'session', {
+  fetch(userFormData, callback) {
+    this.$http.post(`${Constants.API_BASE_PATH}session`, {
       user: {
         username: userFormData.username,
         password: userFormData.password
       }
-    }).success(function(userData){
-      _this.set(userData);
+    }).success((userData) => {
+      this.set(userData)
     }).error(function(userData) {
-      userData = userData || { error: 'Oops! Something went wrong when logging in.' };
-      typeof callback === 'function' && callback(userData);
-    });
-  };
-});
+      this.userData = userData || { error: 'Oops! Something went wrong when logging in.' }
+      typeof callback === 'function' && callback(userData)
+    })
+  }
+}
+
+export default angular.module('notely')
+.service('CurrentUser', CurrentUser)
