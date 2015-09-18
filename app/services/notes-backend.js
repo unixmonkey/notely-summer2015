@@ -1,69 +1,75 @@
-import CurrentUser from './current-user';
-import Constants from '../constants';
+import CurrentUser from './current-user'
+import Constants from '../constants'
 
-angular.module('notely')
-.service('NotesBackend', function NotesBackend(CurrentUser, $http, $cookies) {
-  var notes = [];
+class NotesBackend {
+  constructor(CurrentUser, $http, $cookies) {
+    this.CurrentUser = CurrentUser
+    this.$http = $http
+    this.$cookies = $cookies
+    this.notes = []
+  }
 
-  this.user = function() {
-    return CurrentUser.get();
-  };
+  user() {
+    return this.CurrentUser.get()
+  }
 
-  this.getNotes = function() {
-    return notes;
-  };
+  getNotes() {
+    return this.notes
+  }
 
-  this.clearNotes = function() {
-    notes = [];
-  };
+  clearNotes() {
+    this.notes = []
+  }
 
-  this.fetchNotes = function (callback) {
-    var user = this.user();
+  fetchNotes(callback) {
+    var user = this.user()
     if (user.api_key) {
-      $http.get(Constants.API_BASE_PATH + 'notes?api_key=' + user.api_key)
-        .success(function(notesData) {
-          notes = notesData;
-          typeof callback === 'function' && callback(notes);
-        });
+      this.$http.get(`${Constants.API_BASE_PATH}notes?api_key=${user.api_key}`)
+      .success((notesData) => {
+        this.notes = notesData
+        typeof callback === 'function' && callback(this.notes)
+      })
     }
-  };
+  }
 
-  this.postNote = function(noteData, callback) {
-    var user = this.user();
-    $http.post(Constants.API_BASE_PATH + 'notes', {
+  postNote(noteData, callback) {
+    var user = this.user()
+    this.$http.post(`${Constants.API_BASE_PATH}notes`, {
       api_key: user.api_key,
       note: noteData
-    }).success(function(newNoteData){
-      var note = newNoteData.note;
-      notes.push(note);
-      typeof callback === 'function' && callback(notes, note);
-    });
-  };
+    }).success((newNoteData) => {
+      let note = newNoteData.note
+      this.notes.push(note)
+      typeof callback === 'function' && callback(this.notes, note)
+    })
+  }
 
-  this.replaceNote = function(note, callback) {
-    for(var i=0; i < notes.length; i++) {
-      if (notes[i].id === note.id) {
-        notes[i] = note;
+  replaceNote(note, callback) {
+    for(let i=0; i < this.notes.length; i++) {
+      if (this.notes[i].id === note.id) {
+        this.notes[i] = note
       }
     }
-    typeof callback === 'function' && callback(notes);
-  };
+    typeof callback === 'function' && callback(notes)
+  }
 
-  this.updateNote = function(noteData, callback) {
-    var _this = this;
-    $http.put(Constants.API_BASE_PATH + 'notes/' + noteData.id, {
-      api_key: _this.user().api_key,
+  updateNote(noteData, callback) {
+    let user = this.user()
+    this.$http.put(`${Constants.API_BASE_PATH}notes/${noteData.id}`, {
+      api_key: user.api_key,
       note: noteData
-    }).success(function(newNoteData){
-      _this.replaceNote(newNoteData.note, callback);
-    });
-  };
+    }).success((newNoteData) => {
+      this.replaceNote(newNoteData.note, callback)
+    })
+  }
 
-  this.deleteNote = function(note, callback) {
-    var _this = this;
-    $http.delete(Constants.API_BASE_PATH + 'notes/' + note.id + '?api_key=' + _this.user().api_key)
-    .success(function(newNoteData){
-      _this.fetchNotes(callback);
-    });
-  };
-});
+  deleteNote(note, callback) {
+    this.$http.delete(`${Constants.API_BASE_PATH}notes/${note.id}?api_key=${this.user().api_key}`)
+    .success((newNoteData) => {
+      this.fetchNotes(callback)
+    })
+  }
+}
+
+export default angular.module('notely')
+.service('NotesBackend', ['CurrentUser', '$http', '$cookies', NotesBackend]) // minification-safe syntax for dependency injection
