@@ -1,15 +1,15 @@
-'use strict';
-
 angular.module('notely')
-.service('CurrentNote', function() {
-  var currentNote = {};
+.service('CurrentNote', class CurrentNote {
+  constructor() {
+    this.currentNote = {}
+  }
 
-  this.get = function() {
-    return currentNote;
-  };
+  get() {
+    return this.currentNote
+  }
 
-  this.set = function(note) {
-    currentNote = JSON.parse(JSON.stringify(note));
-    return currentNote;
-  };
-});
+  set(note) {
+    this.currentNote = JSON.parse(JSON.stringify(note))
+    return this.currentNote
+  }
+})
