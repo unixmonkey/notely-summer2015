@@ -1,3 +1,4 @@
+import app from '../../app';
 import mainHeader from './main-header';
 import mainContainer from './main-container';
 
